@@ -47,7 +47,7 @@ SPDK_LIBS += $(SPDK_ROOT_DIR)/lib/nvme/libspdk_nvme.a \
 LIBS += $(SPDK_LIBS) $(PCIACCESS_LIB) -lpthread $(DPDK_LIB) -lrt
 
 ifeq ($(OS),Linux)
-LIBS += -laio
+LIBS += -laio -lgcov --coverage
 CFLAGS += -DHAVE_LIBAIO
 endif
 
