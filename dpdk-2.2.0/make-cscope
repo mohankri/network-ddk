@@ -1,0 +1,13 @@
+#!/bin/bash
+
+make-cscope() {
+  find . \( -name .svn -o -name Build -o -name build -o -name Output \) -prune \
+    -o \( -name '*.[csh]' -o -name 'Makefile.*' \
+    -o -name 'GNUmakefile*' -o -name 'config.*' -o -name '*.js' \
+    -o -name '*.asp' -o -name '*.java' -o -name '*.cpp' \) -type f \
+    -print > cscope.files
+    cscope -bq
+    ctags -R --exclude=Output
+}
+
+make-cscope
