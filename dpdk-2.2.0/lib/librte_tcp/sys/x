@@ -1,0 +1,23 @@
+netbsd_aout_mids.h:#define	MID_MIPS	142	/* big-endian MIPS */
+netbsd_aout_mids.h:#define	MID_POWERPC	149	/* big-endian PowerPC */
+netbsd_disklabel_gpt.h: * little-endian byte-order.
+netbsd_endian.h:/*	$NetBSD: endian.h,v 1.28 2009/08/08 21:23:15 christos Exp $	*/
+netbsd_endian.h: *	@(#)endian.h	8.1 (Berkeley) 6/11/93
+netbsd_endian.h:/* C-family endian-ness definitions */
+netbsd_endian.h:// #include <machine/endian_machdep.h>
+netbsd_endian.h: * Macros to convert to a specific endianness.
+netbsd_endian.h: * Routines to encode/decode big- and little-endian multi-octet values
+netbsd_endian.h:#define __GEN_ENDIAN_ENC(bits, endian) \
+netbsd_endian.h:endian ## bits ## enc(void *dst, uint ## bits ## _t u) \
+netbsd_endian.h:	u = hto ## endian ## bits (u); \
+netbsd_endian.h:#define __GEN_ENDIAN_DEC(bits, endian) \
+netbsd_endian.h:endian ## bits ## dec(const void *buf) \
+netbsd_endian.h:	return endian ## bits ## toh (u); \
+netbsd_exec_elf.h:#define	EM_MIPS_RS3_LE	10	/* MIPS RS3000 Little-endian */
+netbsd_ieee754.h:#include <machine/endian.h>
+netbsd_midiio.h:#include <machine/endian_machdep.h>
+netbsd_midiio.h:/* big endian */
+netbsd_midiio.h:/* little endian */
+netbsd_rb.h:#include <sys/endian.h>
+netbsd_systm.h://#include <machine/endian.h>
+no_netbsd_types.h:#include <machine/endian.h>

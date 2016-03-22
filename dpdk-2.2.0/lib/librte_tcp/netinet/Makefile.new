@@ -1,0 +1,36 @@
+CFLAGS+= -fPIC -shared -I./ -I.. -ggdb -I../port -I../opt  -D_KERNEL -z muldefs
+#CFLAGS_HWIF+=-fPIC -shared -I./ -I../sys -ggdb
+OBJS=	accf_data.o cpu_in_cksum.o if_arp.o in.o in_cksum.o in_offload.o in_pcb.o \
+	tcp_congctl.o tcp_subr.o tcp_input.c tcp_output.c ip_output.c \
+	ip_input.c in_pcb.c ip_encap.c tcp_debug.c tcp_timer.c in.c \
+	in_proto.c ip_etherip.c ip_mroute.c tcp_usrreq.c if_arp.c \
+	in_selsrc.c ip_flow.c \
+	tcp_sack.c in4_cksum.c raw_ip.c ip_icmp.c uipc_socket2.c
+	
+	
+#	udp_usrreq.c \
+
+
+#ip_enc.o ip_id.o if_atm.c in_gif.c ip_carp.c
+
+# OBJS_HWIF=hwif.c hwif_pfpacket.c
+# TEST_BINARY=test
+
+SHARED_LIB=libnetinet.so
+#SHARED_LIB_HWIF=libhwif.so
+
+$(SHARED_LIB): ${OBJS} $(OBJS_HWIF)
+	$(CC) -o $@ $^ $(CFLAGS)
+
+#$(SHARED_LIB_HWIF): $(OBJS_HWIF)
+#	$(CC) -o $@ $^ $(CFLAGS_HWIF)
+
+#all: $(SHARED_LIB) $(SHARED_LIB_HWIF) $(TEST_BINARY)
+# all: $(SHARED_LIB) $(TEST_BINARY)
+
+# $(TEST_BINARY):
+#	$(CC) -o test -ggdb -I./ -I../sys -I../net -I../altq test.c -lrt -lnet -L./
+
+clean:
+	$(RM) *.o *.so test
+
